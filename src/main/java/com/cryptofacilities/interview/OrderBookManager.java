@@ -37,6 +37,18 @@ public interface OrderBookManager {
     void deleteOrder( String orderId );
 
     /**
+     * Print all orders
+     */
+    void printOrders();
+
+    /**
+     * Move order to the end of the queue after modification (quantity reduction)
+     *
+     * @param order the order to be moved at the tail of the queue
+     */
+    void moveOrderToEnd( Order order );
+
+    /**
      * Get the best price for the instrument and side.
      *
      * For buy orders - the highest price
