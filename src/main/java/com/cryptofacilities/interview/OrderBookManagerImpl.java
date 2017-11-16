@@ -4,6 +4,7 @@ import com.sun.org.apache.xpath.internal.SourceTree;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -11,7 +12,7 @@ import java.util.List;
  */
 public class OrderBookManagerImpl implements OrderBookManager {
 
-    private static List<Order> orderList = new ArrayList<Order>();
+    private volatile static LinkedList<Order> orderList = new LinkedList<Order>();
 
     public void addOrder(Order order) {
         orderList.add(order);
@@ -19,6 +20,26 @@ public class OrderBookManagerImpl implements OrderBookManager {
 
     public void modifyOrder(String orderId, long newQuantity) {
 
+        Iterator<Order> orderIterator = orderList.iterator();
+
+        while (orderIterator.hasNext()) {
+            Order order = orderIterator.next();
+            long oldQuantity = order.getQuantity();
+            if (order.getOrderId().equalsIgnoreCase(orderId)) {
+                //System.out.println(orderList.indexOf(order));
+                order.setQuantity(newQuantity);
+                //orderList.remove(orderList.indexOf(order));
+                System.out.println("Order " + order.getOrderId() + "'s quantity changed from " + oldQuantity + " to " + order.getQuantity());
+
+                if (newQuantity > oldQuantity) {
+                    this.moveOrderToEnd(order);
+                    break;
+                }
+                else
+                    continue;
+            }
+
+        }
     }
 
     public void deleteOrder(String orderId) {
@@ -27,11 +48,14 @@ public class OrderBookManagerImpl implements OrderBookManager {
 
         while (orderIterator.hasNext()) {
             Order order = orderIterator.next();
-                if (order.getOrderId().equalsIgnoreCase(orderId))
+                if (order.getOrderId().equalsIgnoreCase(orderId)) {
                     //System.out.println(orderList.indexOf(order));
                     orderIterator.remove();
                     //orderList.remove(orderList.indexOf(order));
-                System.out.println("Order " + order.getOrderId() + " successfully removed!");
+                    System.out.println("Order " + order.getOrderId() + " successfully removed!");
+
+                }
+
         }
     }
 
@@ -43,8 +67,16 @@ public class OrderBookManagerImpl implements OrderBookManager {
 
     }
 
-    public void moveOrderToEnd(Order order) {
+    public synchronized void moveOrderToEnd(Order order) {
 
+        orderList.remove(order);
+        orderList.addLast(order);
+       // order = orderIterator.next();
+//        if (order.getOrderId().equalsIgnoreCase(orderId))
+//            //System.out.println(orderList.indexOf(order));
+//            orderIterator.remove();
+        //orderList.remove(orderList.indexOf(order));
+        System.out.println("Order " + order.getOrderId() + " moved to the end of the queue!");
     }
 
     public long getBestPrice(String instrument, Side side) {
