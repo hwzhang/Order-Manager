@@ -1,5 +1,9 @@
 package com.cryptofacilities.interview;
 
+import com.sun.org.apache.xpath.internal.SourceTree;
+
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -7,8 +11,10 @@ import java.util.List;
  */
 public class OrderBookManagerImpl implements OrderBookManager {
 
-    public void addOrder(Order order) {
+    private static List<Order> orderList = new ArrayList<Order>();
 
+    public void addOrder(Order order) {
+        orderList.add(order);
     }
 
     public void modifyOrder(String orderId, long newQuantity) {
@@ -16,6 +22,28 @@ public class OrderBookManagerImpl implements OrderBookManager {
     }
 
     public void deleteOrder(String orderId) {
+
+        Iterator<Order> orderIterator = orderList.iterator();
+
+        while (orderIterator.hasNext()) {
+            Order order = orderIterator.next();
+                if (order.getOrderId().equalsIgnoreCase(orderId))
+                    //System.out.println(orderList.indexOf(order));
+                    orderIterator.remove();
+                    //orderList.remove(orderList.indexOf(order));
+                System.out.println("Order " + order.getOrderId() + " successfully removed!");
+        }
+    }
+
+    public void printOrders() {
+        System.out.println("List of Orders:\n");
+        for (Order order: orderList) {
+            System.out.println(order.toString());
+        }
+
+    }
+
+    public void moveOrderToEnd(Order order) {
 
     }
 
