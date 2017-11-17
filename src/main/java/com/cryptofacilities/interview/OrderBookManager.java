@@ -1,5 +1,6 @@
 package com.cryptofacilities.interview;
 
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -24,17 +25,19 @@ public interface OrderBookManager {
      * If quantity increases, the order should be put at the end of the queue of orders with the same price
      * If quantity decreases, the order should maintain its position in the queue or orders with the same price
      *
+     * @param side the type of order (buy/sell)
      * @param orderId unique identifier of existing order to modify
      * @param newQuantity new quantity for the order, NOT a delta from previous quantity, always positive
      */
-    void modifyOrder( String orderId, long newQuantity );
+    void modifyOrder( Side side, String orderId, long newQuantity );
 
     /**
      * Delete existyng order
      *
+     * @param side the order type(buy/sell)
      * @param orderId unique identifier of existing order
      */
-    void deleteOrder( String orderId );
+    void deleteOrder( Side side, String orderId );
 
     /**
      * Print all orders
@@ -102,6 +105,10 @@ public interface OrderBookManager {
      * @return all orders, or empty list if there're no orders for the instrument on this side with this price
      */
     List<Order> getOrdersAtLevel(String instrument, Side side, long price );
+
+    LinkedList<Order> getBuyOrdersList( String instrument );
+
+    LinkedList<Order> getSellOrdersList(String instrument );
 
 
 }
