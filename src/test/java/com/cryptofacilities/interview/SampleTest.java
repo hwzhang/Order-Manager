@@ -50,7 +50,7 @@ public class SampleTest {
         // create order
         Order buy = new Order("order1", "VOD.L", Side.buy, 200, 10 );
         Order buy2 = new Order("order2", "VOD.L", Side.buy, 100, 10 );
-        Order sell3 = new Order("order3-", "VOD.L", Side.sell, 50, 10 );
+        Order sell3 = new Order("order3", "VOD.L", Side.sell, 50, 10 );
         Order sell4 = new Order("order4", "VOD.L", Side.sell, 50, 10 );
         Order sell5 = new Order("order5", "VOD.L", Side.sell, 54, 477 );
         Order buy6 = new Order("order6", "VOD.L", Side.buy, 78, 33 );
