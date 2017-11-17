@@ -1,6 +1,7 @@
 package com.cryptofacilities.interview;
 
 import com.sun.org.apache.xpath.internal.SourceTree;
+import sun.awt.image.ImageWatched;
 
 import java.util.*;
 
@@ -9,8 +10,18 @@ import java.util.*;
  */
 public class OrderBook implements OrderBookManager {
 
-    private volatile LinkedList<Order> buyOrderList = new LinkedList<Order>();
-    private volatile LinkedList<Order> sellOrderList = new LinkedList<Order>();
+    private volatile LinkedList<Order> buyOrderListSmall = new LinkedList<Order>();
+    private volatile LinkedList<Order> sellOrderListSmall = new LinkedList<Order>();
+
+    private volatile LinkedList<Order> buyOrderListMid = new LinkedList<Order>();
+    private volatile LinkedList<Order> sellOrderListMid = new LinkedList<Order>();
+
+    private volatile LinkedList<Order> buyOrderListBig = new LinkedList<Order>();
+    private volatile LinkedList<Order> sellOrderListBig = new LinkedList<Order>();
+
+    private volatile LinkedList<Order> buyOrderListLarge = new LinkedList<Order>();
+    private volatile LinkedList<Order> sellOrderListLarge = new LinkedList<Order>();
+
     private HashMap<String, LinkedList<Order>> priceLevelBuyOrders = new HashMap<String, LinkedList<Order>>();
     private HashMap<String, LinkedList<Order>> priceLevelSellOrders = new HashMap<String, LinkedList<Order>>();
 
@@ -23,24 +34,40 @@ public class OrderBook implements OrderBookManager {
 
     public OrderBook(String instrument) {
         this.instrument = instrument;
-        priceLevelBuyOrders.put("0-100", buyOrderList);
-        priceLevelBuyOrders.put("101-1000", buyOrderList);
-        priceLevelBuyOrders.put("1001-5000", buyOrderList);
-        priceLevelBuyOrders.put("5000+", buyOrderList);
 
-        priceLevelSellOrders.put("0-100", buyOrderList);
-        priceLevelSellOrders.put("101-1000", buyOrderList);
-        priceLevelSellOrders.put("1001-5000", buyOrderList);
-        priceLevelSellOrders.put("5000+", buyOrderList);
+        priceLevelBuyOrders.put("5000+", buyOrderListLarge);
+        priceLevelBuyOrders.put("1001-5000", buyOrderListBig);
+        priceLevelBuyOrders.put("101-500", buyOrderListMid);
+        priceLevelBuyOrders.put("0-100", buyOrderListSmall);
+
+        priceLevelSellOrders.put("0-100", sellOrderListSmall);
+        priceLevelSellOrders.put("101-1000", sellOrderListMid);
+        priceLevelSellOrders.put("1001-5000", sellOrderListBig);
+        priceLevelSellOrders.put("5000+", sellOrderListLarge);
     }
 
     public void addOrder(Order order) {
 
         if(order.getInstrument().equalsIgnoreCase((this.getInstrument()))) {
             if(order.getSide().equals(Side.sell))
-                sellOrderList.add(order);
-            else
-                buyOrderList.add(order);
+                if(order.getPrice() >= 0 && order.getPrice() <= 100)
+                    sellOrderListSmall.add(order);
+                else if(order.getPrice() > 100 && order.getPrice() <= 1000)
+                    sellOrderListMid.add(order);
+                else if(order.getPrice() > 1000 && order.getPrice() <= 5000)
+                    sellOrderListBig.add(order);
+                else
+                    sellOrderListLarge.add(order);
+            else {
+                if (order.getPrice() >= 0 && order.getPrice() <= 100)
+                    buyOrderListSmall.add(order);
+                 else if (order.getPrice() > 100 && order.getPrice() <= 1000)
+                    buyOrderListMid.add(order);
+                 else if (order.getPrice() > 1000 && order.getPrice() <= 5000)
+                    buyOrderListBig.add(order);
+                 else
+                    buyOrderListLarge.add(order);
+            }
         }
         else {
             System.out.println("Incorrect instrument - order was not added!");
@@ -52,85 +79,168 @@ public class OrderBook implements OrderBookManager {
     public void modifyOrder(Side side, String orderId, long newQuantity) {
 
 
-        Iterator<Order> orderIterator = null;
+        Iterator orderIterator = null;
         //System.out.println(buyOrderList.contains(orderId));
+        //for (Order order: priceLevelBuyOrders.get())
+        if(side.equals(Side.buy)) {
+            for (LinkedList<Order> orderList : priceLevelBuyOrders.values()) {
+                for (Order order : orderList) {
+                    long oldQuantity = order.getQuantity();
+                    if (order.getOrderId().equalsIgnoreCase(orderId)) {
+                        //System.out.println(orderList.indexOf(order));
+                        order.setQuantity(newQuantity);
+                        //orderList.remove(orderList.indexOf(order));
+                        System.out.println("Order " + order.getOrderId() + "'s quantity changed from " + oldQuantity + " to " + order.getQuantity());
 
-        if(side.equals(Side.buy))
-            orderIterator = buyOrderList.iterator();
-        else if (side.equals(Side.sell))
-            orderIterator = sellOrderList.iterator();
-
-        while (orderIterator.hasNext()) {
-            Order order = orderIterator.next();
-            long oldQuantity = order.getQuantity();
-            if (order.getOrderId().equalsIgnoreCase(orderId)) {
-                //System.out.println(orderList.indexOf(order));
-                order.setQuantity(newQuantity);
-                //orderList.remove(orderList.indexOf(order));
-                System.out.println("Order " + order.getOrderId() + "'s quantity changed from " + oldQuantity + " to " + order.getQuantity());
-
-                if (newQuantity > oldQuantity) {
-                    this.moveOrderToEnd(order);
-                    break;
+                        if (newQuantity > oldQuantity) {
+                            this.moveOrderToEnd(order);
+                            break;
+                        }
+                        else
+                            continue;
+                    }
                 }
-                else
-                    continue;
             }
-
         }
+        else if (side.equals(Side.sell)) {
+            for (LinkedList<Order> orderList : priceLevelSellOrders.values()) {
+                for (Order order : orderList) {
+                    long oldQuantity = order.getQuantity();
+                    if (order.getOrderId().equalsIgnoreCase(orderId)) {
+                        //System.out.println(orderList.indexOf(order));
+                        order.setQuantity(newQuantity);
+                        //orderList.remove(orderList.indexOf(order));
+                        System.out.println("Order " + order.getOrderId() + "'s quantity changed from " + oldQuantity + " to " + order.getQuantity());
+
+                        if (newQuantity > oldQuantity) {
+                            this.moveOrderToEnd(order);
+                            break;
+                        }
+                        else
+                            continue;
+                    }
+                }
+            }
+        }
+
+
+
+//        while (orderIterator.hasNext()) {
+//            Order order =  (Order) orderIterator.next();
+//            long oldQuantity = order.getQuantity();
+//            if (order.getOrderId().equalsIgnoreCase(orderId)) {
+//                //System.out.println(orderList.indexOf(order));
+//                order.setQuantity(newQuantity);
+//                //orderList.remove(orderList.indexOf(order));
+//                System.out.println("Order " + order.getOrderId() + "'s quantity changed from " + oldQuantity + " to " + order.getQuantity());
+//
+//                if (newQuantity > oldQuantity) {
+//                    this.moveOrderToEnd(order);
+//                    break;
+//                }
+//                else
+//                    continue;
+//            }
+//        }
     }
 
     public void deleteOrder(Side side, String orderId) {
 
-        Iterator<Order> orderIterator = null;
-
-        if(side.equals(Side.buy))
-            orderIterator = buyOrderList.iterator();
-        else if (side.equals(Side.sell))
-            orderIterator = sellOrderList.iterator();
-
-        while (orderIterator.hasNext()) {
-            Order order = orderIterator.next();
-                if (order.getOrderId().equalsIgnoreCase(orderId)) {
-                    //System.out.println(orderList.indexOf(order));
-                    orderIterator.remove();
-                    //orderList.remove(orderList.indexOf(order));
-                    System.out.println("Order " + order.getOrderId() + " successfully removed!");
-
+        Iterator orderIterator = null;
+        Collection ordersList = null;
+        if(side.equals(Side.buy)) {
+            for (LinkedList<Order> orderList : priceLevelBuyOrders.values()) {
+                for (Order order : orderList) {
+                    if (order.getOrderId().equalsIgnoreCase(orderId)) {
+                        //System.out.println(orderList.indexOf(order));
+                        orderList.remove();
+                        //orderList.remove(orderList.indexOf(order));
+                        System.out.println("Order " + order.getOrderId() + " successfully removed!");
+                    }
                 }
-
+            }
         }
+            //orderIterator = priceLevelBuyOrders.values().iterator();
+        else if (side.equals(Side.sell)) {
+            for(LinkedList<Order> orderList: priceLevelSellOrders.values()) {
+                for(Order order: orderList) {
+                    if (order.getOrderId().equalsIgnoreCase(orderId)) {
+                        //System.out.println(orderList.indexOf(order));
+                        orderList.remove();
+                        //orderList.remove(orderList.indexOf(order));
+                        System.out.println("Order " + order.getOrderId() + " successfully removed!");
+                    }
+                }
+            }
+        }
+
+
+
+//        while (orderIterator.hasNext()) {
+//            Order order = (Order) orderIterator.next();
+//                if (order.getOrderId().equalsIgnoreCase(orderId)) {
+//                    //System.out.println(orderList.indexOf(order));
+//                    orderIterator.remove();
+//                    //orderList.remove(orderList.indexOf(order));
+//                    System.out.println("Order " + order.getOrderId() + " successfully removed!");
+//                }
+//
+//        }
     }
 
     public void printOrders() {
         System.out.println("List of Buy " + this.getInstrument() + " Orders:\n");
-        for (Order order: buyOrderList) {
-            System.out.println(order.toString());
-        }
+
+        System.out.println(Arrays.asList(priceLevelBuyOrders));
+//        for (String priceRange: priceLevelBuyOrders.keySet()) {
+//            System.out.println(pric);
+//        }
 
         System.out.println("List of Sell " + this.getInstrument() + " Orders:\n");
-        for (Order order: sellOrderList) {
-            System.out.println(order.toString());
-        }
+        System.out.println(Arrays.asList(priceLevelSellOrders));
+//        for (Order order: sellOrderList) {
+//            System.out.println(order.toString());
+//        }
 
     }
 
     public synchronized void moveOrderToEnd(Order order) {
 
+//        Collection<LinkedList<Order>> orderList = priceLevelBuyOrders.values();
+//        System.out.println(priceLevelSellOrders.values());
+//        if(priceLevelSellOrders.values().contains(order)){
+//            priceLevelSellOrders.values().remove(order);
+//
+//        }
+
         if(order.getSide().equals(Side.buy)) {
-            buyOrderList.remove(order);
-            buyOrderList.addLast(order);
+            for (LinkedList<Order> orderList : priceLevelBuyOrders.values()) {
+                for (Order x: orderList) {
+                    if (x.getOrderId().equalsIgnoreCase(order.getOrderId())){
+                        //System.out.println(orderList.indexOf(order));
+                        orderList.remove(order);
+                        orderList.addLast(order);
+                    }
+                }
+            }
         }
         else {
-            sellOrderList.remove(order);
-            sellOrderList.addLast(order);
+            for (LinkedList<Order> orderList : priceLevelSellOrders.values()) {
+                for (Order x: orderList) {
+                    if (x.getOrderId().equalsIgnoreCase(order.getOrderId())){
+                        //System.out.println(orderList.indexOf(order));
+                        orderList.remove(order);
+                        orderList.addLast(order);
+                    }
+                }
+            }
         }
 
-       // order = orderIterator.next();
+//        order = orderIterator.next();
 //        if (order.getOrderId().equalsIgnoreCase(orderId))
 //            //System.out.println(orderList.indexOf(order));
 //            orderIterator.remove();
-        //orderList.remove(orderList.indexOf(order));
+//        orderList.remove(orderList.indexOf(order));
         System.out.println("Order " + order.getOrderId() + " moved to the end of the queue!");
     }
 
@@ -161,10 +271,10 @@ public class OrderBook implements OrderBookManager {
     }
 
     public LinkedList<Order> getBuyOrdersList(String instrument) {
-        return buyOrderList;
+        return null;
     }
 
     public LinkedList<Order> getSellOrdersList(String instrument) {
-        return sellOrderList;
+        return null;
     }
 }
