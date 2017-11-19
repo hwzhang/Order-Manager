@@ -308,26 +308,225 @@ public class OrderBook implements OrderBookManager {
     }
 
     public long getOrderNumAtLevel(String instrument, Side side, long price) {
-        return 0;
+        long numberOfOrders = -1;
+        if(this.getInstrument().equalsIgnoreCase(instrument)) {
+        	if(side.equals(Side.sell))
+                if(price >= 0 && price <= 100)
+                	numberOfOrders = priceLevelSellOrders.get("0-100").size();
+            else if(price > 100 && price <= 1000)
+            	numberOfOrders = priceLevelSellOrders.get("101-500").size();
+            else if(price > 1000 && price <= 5000)
+            	numberOfOrders = priceLevelSellOrders.get("1001-5000").size();
+            else
+            	numberOfOrders = priceLevelSellOrders.get("5000+").size();
+        else {
+            if (price >= 0 && price <= 100)
+            	numberOfOrders = priceLevelBuyOrders.get("0-100").size();
+             else if (price > 100 && price <= 1000)
+            	 numberOfOrders = priceLevelBuyOrders.get("101-500").size();
+             else if (price > 1000 && price <= 5000)
+            	 numberOfOrders = priceLevelBuyOrders.get("1001-5000").size();
+             else
+            	 numberOfOrders = priceLevelBuyOrders.get("5000+").size();
+            }
+        }
+       
+        return numberOfOrders;
     }
 
     public long getTotalQuantityAtLevel(String instrument, Side side, long price) {
-        return 0;
+    	long totalQuantity = 0;
+        if(this.getInstrument().equalsIgnoreCase(instrument)) {
+        	if(side.equals(Side.sell))
+                if(price >= 0 && price <= 100)
+                	for(Order order: priceLevelSellOrders.get("0-100")) {
+            		totalQuantity += order.getQuantity();
+            	}
+            else if(price > 100 && price <= 1000)
+            	for(Order order: priceLevelSellOrders.get("101-500")) {
+            		totalQuantity += order.getQuantity();
+            	}
+            else if(price > 1000 && price <= 5000)
+            	for(Order order: priceLevelSellOrders.get("1001-5000")) {
+            		totalQuantity += order.getQuantity();
+            	}
+            else
+            	for(Order order: priceLevelSellOrders.get("5000+")) {
+            		totalQuantity += order.getQuantity();
+            	}
+        else {
+            if (price >= 0 && price <= 100)
+            	for(Order order: priceLevelBuyOrders.get("0-10")) {
+            		totalQuantity += order.getQuantity();
+            	}
+             else if (price > 100 && price <= 1000)
+            	 for(Order order: priceLevelBuyOrders.get("101-500")) {
+             		totalQuantity += order.getQuantity();
+             	}
+             else if (price > 1000 && price <= 5000)
+            	 for(Order order: priceLevelBuyOrders.get("1001-5000")) {
+             		totalQuantity += order.getQuantity();
+             	}
+             else
+            	 for(Order order: priceLevelBuyOrders.get("5000+")) {
+                 		totalQuantity += order.getQuantity();
+                 	}
+            }
+        return totalQuantity;
+        } else {
+          return -1;
+        }
     }
 
     public long getTotalVolumeAtLevel(String instrument, Side side, long price) {
-        return 0;
+        long volume = -1;
+    	if(this.getInstrument().equalsIgnoreCase(instrument)) {
+    		long orderPrice = 0;
+        	if(side.equals(Side.sell)) {
+        		if(price >= 0 && price <= 100) {
+        			for(Order order : priceLevelSellOrders.get("0-100")) {
+    				orderPrice +=order.getPrice();
+    			}
+    		    volume = orderPrice * priceLevelSellOrders.get("0-100").size();
+    		   return volume;
+        		} else if(price > 100 && price <= 1000) {
+    			for(Order order : priceLevelSellOrders.get("101-500")) {
+    				orderPrice +=order.getPrice();
+    			}
+    		    volume = orderPrice * priceLevelSellOrders.get("101-500").size();
+    		   return volume;
+    		} else if(price > 1000 && price <= 5000) {
+    			for(Order order : priceLevelSellOrders.get("1001-5000")) {
+    				orderPrice +=order.getPrice();
+    			}
+    		    volume = orderPrice * priceLevelSellOrders.get("1001-5000").size();
+    		   return volume;
+    		} else{
+    			for(Order order : priceLevelSellOrders.get("5000+")) {
+    				orderPrice +=order.getPrice();
+    			}
+    		    volume = orderPrice * priceLevelSellOrders.get("5000+").size();
+        		   return volume;
+        		}
+        			
+        	} if(side.equals(Side.buy)) {
+        		if(price >= 0 && price <= 100) {
+        			for(Order order : priceLevelBuyOrders.get("0-100")) {
+    				orderPrice +=order.getPrice();
+    			}
+    		    volume = orderPrice * priceLevelBuyOrders.get("0-100").size();
+    		   return volume;
+        		} else if(price > 100 && price <= 1000) {
+    			for(Order order : priceLevelBuyOrders.get("101-500")) {
+    				orderPrice +=order.getPrice();
+    			}
+    		    volume = orderPrice * priceLevelBuyOrders.get("101-500").size();
+    		   return volume;
+    		} else if(price > 1000 && price <= 5000) {
+    			for(Order order : priceLevelBuyOrders.get("1001-5000")) {
+    				orderPrice +=order.getPrice();
+    			}
+    		    volume = orderPrice * priceLevelBuyOrders.get("1001-5000").size();
+    		   return volume;
+    		} else{
+    			for(Order order : priceLevelBuyOrders.get("5000+")) {
+    				orderPrice +=order.getPrice();
+    			}
+    		    volume = orderPrice * priceLevelBuyOrders.get("5000+").size();
+        		   return volume;
+        		}
+        	}
+    	}	
+    	return volume; 
     }
-
+    
     public List<Order> getOrdersAtLevel(String instrument, Side side, long price) {
-        return null;
+    	if(this.getInstrument().equalsIgnoreCase(instrument)){
+        	if(side.equals(Side.sell))
+                if(price >= 0 && price <= 100)
+                    return  priceLevelSellOrders.get("0-100");
+            else if(price > 100 && price <= 1000)
+                return  priceLevelSellOrders.get("101-500");
+            else if(price > 1000 && price <= 5000)
+                return  priceLevelSellOrders.get("1001-5000");
+            else
+                return  priceLevelSellOrders.get("5000+");
+        else {
+            if (price >= 0 && price <= 100)
+               return priceLevelBuyOrders.get("0-100");
+             else if (price > 100 && price <= 1000)
+               return priceLevelBuyOrders.get("101-500");
+             else if (price > 1000 && price <= 5000)
+               return priceLevelBuyOrders.get("1001-5000");
+             else
+               return priceLevelBuyOrders.get("5000+");
+            }
+        } else {
+        	return new ArrayList<>();
+        }
     }
 
     public LinkedList<Order> getBuyOrdersList(String instrument) {
-        return null;
+    	LinkedList<Order> orders = new LinkedList<Order>();
+    	if(this.getInstrument().equals(instrument)) {
+        	if (!priceLevelBuyOrders.get("0-100").isEmpty()){
+        		for (Order order: priceLevelBuyOrders.get("0-100")) {
+        			orders.add(order);
+        		}
+        	}
+        	
+        	if(!priceLevelBuyOrders.get("101-500").isEmpty()) {
+        		for(Order order: priceLevelBuyOrders.get("101-500")) {
+        			orders.add(order);
+        		}
+        	}
+        	
+        	if(!priceLevelBuyOrders.get("1001-5000").isEmpty()) {
+        		for(Order order: priceLevelBuyOrders.get("1001-5000")) {
+        			orders.add(order);
+        		}
+        	}
+        	
+        	if(!priceLevelBuyOrders.get("5000+").isEmpty()) {
+        		for(Order order: priceLevelSellOrders.get("5000+")) {
+        			orders.add(order);
+        		}
+        	}
+        	return orders;
+        } else {
+        	return new LinkedList<Order>();
+        }
     }
 
     public LinkedList<Order> getSellOrdersList(String instrument) {
-        return null;
+    	LinkedList<Order> orders = new LinkedList<Order>();
+    	if(this.getInstrument().equals(instrument)) {
+        	if (!priceLevelSellOrders.get("0-100").isEmpty()){
+        		for (Order order: sellOrderListSmall) {
+        			orders.add(order);
+        		}
+        	}
+        	
+        	if(!priceLevelSellOrders.get("101-500").isEmpty()) {
+        		for(Order order: priceLevelSellOrders.get("101-500")) {
+        			orders.add(order);
+        		}
+        	} 
+        	
+        	if(!priceLevelSellOrders.get("1001-5000").isEmpty()) {
+        		for(Order order: priceLevelSellOrders.get("1001-5000")) {
+        			orders.add(order);
+        		}
+    	}
+        	
+        	if(!priceLevelSellOrders.get("5000+").isEmpty()) {
+        		for(Order order: priceLevelSellOrders.get("5000+")) {
+            			orders.add(order);
+            		}
+            	}
+            	return orders;
+            } else {
+            	return new LinkedList<Order>();
+            }
+        }
     }
-}
