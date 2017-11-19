@@ -104,7 +104,7 @@ public interface OrderBookManager {
      * @param price requested price level
      * @return all orders, or empty list if there're no orders for the instrument on this side with this price
      */
-    List<Order> getOrdersAtLevel(String instrument, Side side, long price );
+    LinkedList<Order> getOrdersAtLevel(String instrument, Side side, long price );
 
     LinkedList<Order> getBuyOrdersList( String instrument );
 

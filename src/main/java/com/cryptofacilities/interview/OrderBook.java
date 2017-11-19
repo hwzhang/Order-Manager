@@ -299,28 +299,149 @@ public class OrderBook implements OrderBookManager {
 
     public long getBestPrice(String instrument, Side side) {
 
-        long bestPrice = 0;
+        long bestPrice = Long.MAX_VALUE;
+        int ordersLength = 0;
 
-        //if(side.equals(Side.buy))
+        for (Map.Entry<String, LinkedList<Order>> iterator : priceLevelBuyOrders.entrySet()) {
+            LinkedList<Order> orderList = iterator.getValue();
+            //System.out.println("Key: " + key);
+            ordersLength += orderList.size();
+            if(ordersLength == 0) {
+                System.out.println("No " + side + " orders for '" + instrument + "'.");
+                return -1;
+            }
 
+            Iterator it = orderList.iterator();
+            while (it.hasNext()) {
+                Order order = (Order) it.next();
+                if (order.getPrice() < bestPrice) {
+                    bestPrice = order.getPrice();
+                    //orderList.remove(orderList.indexOf(order));
+                    //System.out.println("Order " + order.getOrderId() + " successfully removed!");
+                    //break;
+                }
+            }
+        }
+        System.out.println("The best " + side + " price for instrument '" + instrument + "' is " + bestPrice);
 
-        return 0;
+        return bestPrice;
     }
 
     public long getOrderNumAtLevel(String instrument, Side side, long price) {
-        return 0;
+
+        for (Map.Entry<String, LinkedList<Order>> iterator : priceLevelBuyOrders.entrySet()) {
+            LinkedList<Order> orderList = iterator.getValue();
+            if (orderList.isEmpty()) {
+                System.out.println("There are no " + side + " orders at level '" + iterator.getKey() + "'");
+                return -1;
+            }
+
+            String[] priceRange = iterator.getKey().split("\\D+");
+            if (priceRange.length == 1) {
+                if (price > Long.parseLong(priceRange[0])) {
+                    System.out.println("The number of " + side + " orders at level '" + iterator.getKey() + "' is " + orderList.size());
+                    return orderList.size();
+                }
+            }
+            else {
+                if (price > Long.parseLong(priceRange[0]) && price < Long.parseLong(priceRange[1])) {
+                    System.out.println("The number of orders at level '" + iterator.getKey() + "' is " + orderList.size());
+                    return orderList.size();
+                }
+            }
+
+            //System.out.println("Key: " + key);
+//            Iterator it = orderList.iterator();
+//            while (it.hasNext()) {
+//                Order order = (Order) it.next();
+//                if (order.getPrice() < bestPrice) {
+//                    bestPrice = order.getPrice();
+//                    //orderList.remove(orderList.indexOf(order));
+//                    //System.out.println("Order " + order.getOrderId() + " successfully removed!");
+//                    //break;
+//                }
+//            }
+        }
+
+        return -1;
     }
 
     public long getTotalQuantityAtLevel(String instrument, Side side, long price) {
-        return 0;
+
+        long quantityAtPrice = 0;
+
+        for (Map.Entry<String, LinkedList<Order>> iterator : priceLevelBuyOrders.entrySet()) {
+            LinkedList<Order> orderList = iterator.getValue();
+            Iterator it = orderList.iterator();
+            while (it.hasNext()) {
+                Order order = (Order) it.next();
+                if (order.getPrice() == price) {
+                    quantityAtPrice += order.getQuantity();
+                    //orderList.remove(orderList.indexOf(order));
+                    //System.out.println("Order " + order.getOrderId() + " successfully removed!");
+                    //break;
+                }
+            }
+        }
+
+        System.out.println("Cumulative quantity of " + instrument + " orders at price of " + price + ": " + quantityAtPrice);
+
+        if (quantityAtPrice == 0)
+            return -1;
+
+        return quantityAtPrice;
     }
 
     public long getTotalVolumeAtLevel(String instrument, Side side, long price) {
-        return 0;
+
+        long quantityAtPrice = 0;
+        long volumeAtPrice;
+
+        for (Map.Entry<String, LinkedList<Order>> iterator : priceLevelBuyOrders.entrySet()) {
+            LinkedList<Order> orderList = iterator.getValue();
+            Iterator it = orderList.iterator();
+            while (it.hasNext()) {
+                Order order = (Order) it.next();
+                if (order.getPrice() == price) {
+                    quantityAtPrice += order.getQuantity();
+                    //orderList.remove(orderList.indexOf(order));
+                    //System.out.println("Order " + order.getOrderId() + " successfully removed!");
+                    //break;
+                }
+            }
+        }
+
+        volumeAtPrice = price * quantityAtPrice;
+
+        System.out.println("Cumulative quantity of " + instrument + " orders at price of " + price + ": " + volumeAtPrice);
+
+        if (volumeAtPrice == 0)
+            return -1;
+
+        return volumeAtPrice;
     }
 
-    public List<Order> getOrdersAtLevel(String instrument, Side side, long price) {
-        return null;
+    public LinkedList<Order> getOrdersAtLevel(String instrument, Side side, long price) {
+
+        LinkedList<Order> samePriceOrders = new LinkedList<Order>();
+
+        for (Map.Entry<String, LinkedList<Order>> iterator : priceLevelBuyOrders.entrySet()) {
+            LinkedList<Order> orderList = iterator.getValue();
+            Iterator it = orderList.iterator();
+            while (it.hasNext()) {
+                Order order = (Order) it.next();
+                if (order.getPrice() == price) {
+                    samePriceOrders.add(order);
+                    //orderList.remove(orderList.indexOf(order));
+                    //System.out.println("Order " + order.getOrderId() + " successfully removed!");
+                    //break;
+                }
+            }
+        }
+        for(Order o: samePriceOrders)
+            System.out.println(o);
+
+        return samePriceOrders;
     }
 
     public LinkedList<Order> getBuyOrdersList(String instrument) {

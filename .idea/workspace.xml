@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9de11f11-dcfa-44fd-8696-a6a9aed967ff" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/cryptofacilities/interview/OrderBook.java" afterPath="$PROJECT_DIR$/src/main/java/com/cryptofacilities/interview/OrderBook.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/cryptofacilities/interview/OrderBookManager.java" afterPath="$PROJECT_DIR$/src/main/java/com/cryptofacilities/interview/OrderBookManager.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/cryptofacilities/interview/SampleTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/cryptofacilities/interview/SampleTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interview.iml" afterPath="$PROJECT_DIR$/interview.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -35,45 +32,41 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/cryptofacilities/interview/OrderBookManager.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="19" column="9" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="9" />
+              <caret line="105" column="7" selection-start-line="105" selection-start-column="7" selection-end-line="105" selection-end-column="7" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SampleTest.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="SampleTest.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/cryptofacilities/interview/SampleTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="86" column="18" selection-start-line="86" selection-start-column="18" selection-end-line="86" selection-end-column="18" />
+            <state vertical-scroll-proportion="-1.2042834">
+              <caret line="53" column="9" selection-start-line="53" selection-start-column="9" selection-end-line="53" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#514#521#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="OrderBook.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="OrderBook.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/cryptofacilities/interview/OrderBook.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.117647">
-              <caret line="143" column="27" selection-start-line="143" selection-start-column="27" selection-end-line="143" selection-end-column="27" />
+            <state vertical-scroll-proportion="-10.551724">
+              <caret line="442" column="0" selection-start-line="442" selection-start-column="0" selection-end-line="442" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#998#1025#0" expanded="true" />
+                <element signature="e#1110#1137#0" expanded="true" />
                 <element signature="e#1176#1177#0" expanded="true" />
                 <element signature="e#1209#1210#0" expanded="true" />
-                <element signature="e#12961#12962#0" expanded="true" />
-                <element signature="e#12985#12986#0" expanded="true" />
-                <element signature="e#13070#13071#0" expanded="true" />
-                <element signature="e#13094#13095#0" expanded="true" />
-                <element signature="e#13177#13178#0" expanded="true" />
-                <element signature="e#13201#13202#0" expanded="true" />
-                <element signature="e#13286#13287#0" expanded="true" />
-                <element signature="e#13313#13314#0" expanded="true" />
-                <element signature="e#13381#13382#0" expanded="true" />
-                <element signature="e#13408#13409#0" expanded="true" />
-                <element signature="e#13477#13478#0" expanded="true" />
-                <element signature="e#13504#13505#0" expanded="true" />
+                <element signature="e#17782#17789#0" expanded="true" />
+                <element signature="e#18596#18597#0" expanded="true" />
+                <element signature="e#18623#18624#0" expanded="true" />
+                <element signature="e#18692#18693#0" expanded="true" />
+                <element signature="e#18719#18720#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -121,8 +114,8 @@
         <option value="$PROJECT_DIR$/src/main/java/com/cryptofacilities/interview/OrderBookManagerImp.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cryptofacilities/interview/OrderBooker.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cryptofacilities/interview/OrderBookManager.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/cryptofacilities/interview/SampleTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cryptofacilities/interview/OrderBook.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/cryptofacilities/interview/SampleTest.java" />
       </list>
     </option>
   </component>
@@ -280,6 +273,8 @@
     <property name="recentsLimit" value="5" />
     <property name="dynamic.classpath" value="false" />
     <property name="FullScreen" value="false" />
+    <property name="OverrideImplement.combined" value="true" />
+    <property name="OverrideImplement.overriding.sorted" value="false" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -293,11 +288,115 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.SampleTest.testQunatityChange">
+  <component name="RunManager" selected="JUnit.SampleTest.testDeleteOrder">
+    <configuration default="false" name="SampleTest.testBestPrice" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.cryptofacilities.interview.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="interview" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.cryptofacilities.interview" />
+      <option name="MAIN_CLASS_NAME" value="com.cryptofacilities.interview.SampleTest" />
+      <option name="METHOD_NAME" value="testBestPrice" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="SampleTest.testTotalQuantityAtLevel" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.cryptofacilities.interview.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="interview" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.cryptofacilities.interview" />
+      <option name="MAIN_CLASS_NAME" value="com.cryptofacilities.interview.SampleTest" />
+      <option name="METHOD_NAME" value="testTotalQuantityAtLevel" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="SampleTest.testTotalVolumeAtLevel" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.cryptofacilities.interview.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="interview" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.cryptofacilities.interview" />
+      <option name="MAIN_CLASS_NAME" value="com.cryptofacilities.interview.SampleTest" />
+      <option name="METHOD_NAME" value="testTotalVolumeAtLevel" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="SampleTest.testOrderAtLevel" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.cryptofacilities.interview.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="interview" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.cryptofacilities.interview" />
+      <option name="MAIN_CLASS_NAME" value="com.cryptofacilities.interview.SampleTest" />
+      <option name="METHOD_NAME" value="testOrderAtLevel" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
     <configuration default="false" name="SampleTest.testDeleteOrder" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
-          <option name="PATTERN" value="com.cryptofacilities.interview.OrderBook" />
+          <option name="PATTERN" value="com.cryptofacilities.interview.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -307,58 +406,6 @@
       <option name="PACKAGE_NAME" value="com.cryptofacilities.interview" />
       <option name="MAIN_CLASS_NAME" value="com.cryptofacilities.interview.SampleTest" />
       <option name="METHOD_NAME" value="testDeleteOrder" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-      <method />
-    </configuration>
-    <configuration default="false" name="SampleTest.testQunatityChange" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.cryptofacilities.interview.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="interview" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="com.cryptofacilities.interview" />
-      <option name="MAIN_CLASS_NAME" value="com.cryptofacilities.interview.SampleTest" />
-      <option name="METHOD_NAME" value="testQunatityChange" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-      <method />
-    </configuration>
-    <configuration default="false" name="SampleTest.populateOrders" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.cryptofacilities.interview.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="interview" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="com.cryptofacilities.interview" />
-      <option name="MAIN_CLASS_NAME" value="com.cryptofacilities.interview.SampleTest" />
-      <option name="METHOD_NAME" value="populateOrders" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
@@ -521,16 +568,20 @@
       <listeners />
       <method />
     </configuration>
-    <list size="3">
-      <item index="0" class="java.lang.String" itemvalue="JUnit.SampleTest.testDeleteOrder" />
-      <item index="1" class="java.lang.String" itemvalue="JUnit.SampleTest.testQunatityChange" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.SampleTest.populateOrders" />
+    <list size="5">
+      <item index="0" class="java.lang.String" itemvalue="JUnit.SampleTest.testBestPrice" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.SampleTest.testTotalQuantityAtLevel" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.SampleTest.testTotalVolumeAtLevel" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.SampleTest.testOrderAtLevel" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.SampleTest.testDeleteOrder" />
     </list>
     <recent_temporary>
-      <list size="3">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.SampleTest.testQunatityChange" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.SampleTest.testDeleteOrder" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.SampleTest.populateOrders" />
+      <list size="5">
+        <item index="0" class="java.lang.String" itemvalue="JUnit.SampleTest.testDeleteOrder" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.SampleTest.testOrderAtLevel" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.SampleTest.testTotalVolumeAtLevel" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.SampleTest.testTotalQuantityAtLevel" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.SampleTest.testBestPrice" />
       </list>
     </recent_temporary>
   </component>
@@ -580,7 +631,7 @@
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -661,7 +712,7 @@
           <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="9" />
+      <option name="time" value="10" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -684,6 +735,7 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#514#521#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -702,20 +754,15 @@
           <caret line="206" column="58" selection-start-line="206" selection-start-column="58" selection-end-line="206" selection-end-column="58" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#998#1025#0" expanded="true" />
+            <element signature="e#1110#1137#0" expanded="true" />
             <element signature="e#1176#1177#0" expanded="true" />
             <element signature="e#1209#1210#0" expanded="true" />
-            <element signature="e#12961#12962#0" expanded="true" />
-            <element signature="e#12985#12986#0" expanded="true" />
-            <element signature="e#13070#13071#0" expanded="true" />
-            <element signature="e#13094#13095#0" expanded="true" />
-            <element signature="e#13177#13178#0" expanded="true" />
-            <element signature="e#13201#13202#0" expanded="true" />
-            <element signature="e#13286#13287#0" expanded="true" />
-            <element signature="e#13313#13314#0" expanded="true" />
-            <element signature="e#13381#13382#0" expanded="true" />
-            <element signature="e#13408#13409#0" expanded="true" />
-            <element signature="e#13477#13478#0" expanded="true" />
-            <element signature="e#13504#13505#0" expanded="true" />
+            <element signature="e#17782#17789#0" expanded="true" />
+            <element signature="e#18596#18597#0" expanded="true" />
+            <element signature="e#18623#18624#0" expanded="true" />
+            <element signature="e#18692#18693#0" expanded="true" />
+            <element signature="e#18719#18720#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -750,6 +797,7 @@
           <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#514#521#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -760,20 +808,15 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#998#1025#0" expanded="true" />
+            <element signature="e#1110#1137#0" expanded="true" />
             <element signature="e#1176#1177#0" expanded="true" />
             <element signature="e#1209#1210#0" expanded="true" />
-            <element signature="e#12961#12962#0" expanded="true" />
-            <element signature="e#12985#12986#0" expanded="true" />
-            <element signature="e#13070#13071#0" expanded="true" />
-            <element signature="e#13094#13095#0" expanded="true" />
-            <element signature="e#13177#13178#0" expanded="true" />
-            <element signature="e#13201#13202#0" expanded="true" />
-            <element signature="e#13286#13287#0" expanded="true" />
-            <element signature="e#13313#13314#0" expanded="true" />
-            <element signature="e#13381#13382#0" expanded="true" />
-            <element signature="e#13408#13409#0" expanded="true" />
-            <element signature="e#13477#13478#0" expanded="true" />
-            <element signature="e#13504#13505#0" expanded="true" />
+            <element signature="e#17782#17789#0" expanded="true" />
+            <element signature="e#18596#18597#0" expanded="true" />
+            <element signature="e#18623#18624#0" expanded="true" />
+            <element signature="e#18692#18693#0" expanded="true" />
+            <element signature="e#18719#18720#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -800,20 +843,15 @@
           <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#998#1025#0" expanded="true" />
+            <element signature="e#1110#1137#0" expanded="true" />
             <element signature="e#1176#1177#0" expanded="true" />
             <element signature="e#1209#1210#0" expanded="true" />
-            <element signature="e#12961#12962#0" expanded="true" />
-            <element signature="e#12985#12986#0" expanded="true" />
-            <element signature="e#13070#13071#0" expanded="true" />
-            <element signature="e#13094#13095#0" expanded="true" />
-            <element signature="e#13177#13178#0" expanded="true" />
-            <element signature="e#13201#13202#0" expanded="true" />
-            <element signature="e#13286#13287#0" expanded="true" />
-            <element signature="e#13313#13314#0" expanded="true" />
-            <element signature="e#13381#13382#0" expanded="true" />
-            <element signature="e#13408#13409#0" expanded="true" />
-            <element signature="e#13477#13478#0" expanded="true" />
-            <element signature="e#13504#13505#0" expanded="true" />
+            <element signature="e#17782#17789#0" expanded="true" />
+            <element signature="e#18596#18597#0" expanded="true" />
+            <element signature="e#18623#18624#0" expanded="true" />
+            <element signature="e#18692#18693#0" expanded="true" />
+            <element signature="e#18719#18720#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -880,24 +918,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cryptofacilities/interview/OrderBookManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="19" column="9" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/cryptofacilities/interview/SampleTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="86" column="18" selection-start-line="86" selection-start-column="18" selection-end-line="86" selection-end-column="18" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/cryptofacilities/interview/Order.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -916,24 +936,38 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/cryptofacilities/interview/OrderBook.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.117647">
-          <caret line="143" column="27" selection-start-line="143" selection-start-column="27" selection-end-line="143" selection-end-column="27" />
+        <state vertical-scroll-proportion="-10.551724">
+          <caret line="442" column="0" selection-start-line="442" selection-start-column="0" selection-end-line="442" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#998#1025#0" expanded="true" />
+            <element signature="e#1110#1137#0" expanded="true" />
             <element signature="e#1176#1177#0" expanded="true" />
             <element signature="e#1209#1210#0" expanded="true" />
-            <element signature="e#12961#12962#0" expanded="true" />
-            <element signature="e#12985#12986#0" expanded="true" />
-            <element signature="e#13070#13071#0" expanded="true" />
-            <element signature="e#13094#13095#0" expanded="true" />
-            <element signature="e#13177#13178#0" expanded="true" />
-            <element signature="e#13201#13202#0" expanded="true" />
-            <element signature="e#13286#13287#0" expanded="true" />
-            <element signature="e#13313#13314#0" expanded="true" />
-            <element signature="e#13381#13382#0" expanded="true" />
-            <element signature="e#13408#13409#0" expanded="true" />
-            <element signature="e#13477#13478#0" expanded="true" />
-            <element signature="e#13504#13505#0" expanded="true" />
+            <element signature="e#17782#17789#0" expanded="true" />
+            <element signature="e#18596#18597#0" expanded="true" />
+            <element signature="e#18623#18624#0" expanded="true" />
+            <element signature="e#18692#18693#0" expanded="true" />
+            <element signature="e#18719#18720#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cryptofacilities/interview/OrderBookManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="105" column="7" selection-start-line="105" selection-start-column="7" selection-end-line="105" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/cryptofacilities/interview/SampleTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.2042834">
+          <caret line="53" column="9" selection-start-line="53" selection-start-column="9" selection-end-line="53" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#514#521#0" expanded="true" />
           </folding>
         </state>
       </provider>
