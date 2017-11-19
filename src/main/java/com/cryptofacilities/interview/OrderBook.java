@@ -316,11 +316,48 @@ public class OrderBook implements OrderBookManager {
     }
 
     public long getTotalVolumeAtLevel(String instrument, Side side, long price) {
-        return 0;
+        long volume = 0;
+    	if(this.getInstrument().equalsIgnoreCase(instrument)) {
+    		long orderPrice = 0;
+        	if(side.equals(Side.sell)) {
+        		if(price >= 0 && price <= 100)
+        			for(Order order : sellOrderListSmall) {
+        				orderPrice +=order.getPrice();
+        			}
+        		 volume = orderPrice * sellOrderListSmall.size();
+        	} if(side.equals(Side.buy)) {
+        		
+        	}
+        } else {
+        	volume = - 1;
+        }
+    	return volume; 
     }
 
     public List<Order> getOrdersAtLevel(String instrument, Side side, long price) {
-        return null;
+        if(this.getInstrument().equalsIgnoreCase(instrument)){
+        	if(side.equals(Side.sell))
+                if(price >= 0 && price <= 100)
+                    return sellOrderListSmall;
+                else if(price > 100 && price <= 1000)
+                    return sellOrderListMid;
+                else if(price > 1000 && price <= 5000)
+                    return sellOrderListBig;
+                else
+                    return sellOrderListLarge;
+            else {
+                if (price >= 0 && price <= 100)
+                   return buyOrderListSmall;
+                 else if (price > 100 && price <= 1000)
+                   return buyOrderListMid;
+                 else if (price > 1000 && price <= 5000)
+                    return buyOrderListBig;
+                 else
+                   return buyOrderListLarge;
+            }
+        } else {
+        	return null;
+        }
     }
 
     public LinkedList<Order> getBuyOrdersList(String instrument) {
@@ -328,6 +365,26 @@ public class OrderBook implements OrderBookManager {
     }
 
     public LinkedList<Order> getSellOrdersList(String instrument) {
-        return null;
+    	LinkedList<Order> orders = new LinkedList<Order>();
+    	if(this.getInstrument().equals(instrument)) {
+        	if (!this.sellOrderListSmall.isEmpty()){
+        		for (Order order: sellOrderListSmall) {
+        			orders.add(order);
+        		}
+        	}
+        	if(!this.sellOrderListMid.isEmpty()) {
+        		for(Order order: sellOrderListMid) {
+        			orders.add(order);
+        		}
+        	} 
+        	if(!this.sellOrderListBig.isEmpty()) {
+        		for(Order order: sellOrderListBig) {
+        			orders.add(order);
+        		}
+        	}
+        	return orders;
+        } else {
+        	return null;
+        }
     }
 }
