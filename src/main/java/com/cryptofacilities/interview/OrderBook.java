@@ -48,28 +48,27 @@ public class OrderBook implements OrderBookManager {
 
     public void addOrder(Order order) {
 
-        if(order.getInstrument().equalsIgnoreCase((this.getInstrument()))) {
-            if(order.getSide().equals(Side.sell))
-                if(order.getPrice() >= 0 && order.getPrice() <= 100)
+        if (order.getInstrument().equalsIgnoreCase((this.getInstrument()))) {
+            if (order.getSide().equals(Side.sell))
+                if (order.getPrice() >= 0 && order.getPrice() <= 100)
                     sellOrderListSmall.add(order);
-                else if(order.getPrice() > 100 && order.getPrice() <= 1000)
+                else if (order.getPrice() > 100 && order.getPrice() <= 1000)
                     sellOrderListMid.add(order);
-                else if(order.getPrice() > 1000 && order.getPrice() <= 5000)
+                else if (order.getPrice() > 1000 && order.getPrice() <= 5000)
                     sellOrderListBig.add(order);
                 else
                     sellOrderListLarge.add(order);
             else {
                 if (order.getPrice() >= 0 && order.getPrice() <= 100)
                     buyOrderListSmall.add(order);
-                 else if (order.getPrice() > 100 && order.getPrice() <= 1000)
+                else if (order.getPrice() > 100 && order.getPrice() <= 1000)
                     buyOrderListMid.add(order);
-                 else if (order.getPrice() > 1000 && order.getPrice() <= 5000)
+                else if (order.getPrice() > 1000 && order.getPrice() <= 5000)
                     buyOrderListBig.add(order);
-                 else
+                else
                     buyOrderListLarge.add(order);
             }
-        }
-        else {
+        } else {
             System.out.println("Incorrect instrument - order was not added!");
         }
 
@@ -82,7 +81,7 @@ public class OrderBook implements OrderBookManager {
         Iterator orderIterator = null;
         //System.out.println(buyOrderList.contains(orderId));
         //for (Order order: priceLevelBuyOrders.get())
-        if(side.equals(Side.buy)) {
+        if (side.equals(Side.buy)) {
             for (LinkedList<Order> orderList : priceLevelBuyOrders.values()) {
                 for (Order order : orderList) {
                     long oldQuantity = order.getQuantity();
@@ -95,14 +94,12 @@ public class OrderBook implements OrderBookManager {
                         if (newQuantity > oldQuantity) {
                             this.moveOrderToEnd(order);
                             break;
-                        }
-                        else
+                        } else
                             continue;
                     }
                 }
             }
-        }
-        else if (side.equals(Side.sell)) {
+        } else if (side.equals(Side.sell)) {
             for (LinkedList<Order> orderList : priceLevelSellOrders.values()) {
                 for (Order order : orderList) {
                     long oldQuantity = order.getQuantity();
@@ -115,14 +112,12 @@ public class OrderBook implements OrderBookManager {
                         if (newQuantity > oldQuantity) {
                             this.moveOrderToEnd(order);
                             break;
-                        }
-                        else
+                        } else
                             continue;
                     }
                 }
             }
         }
-
 
 
 //        while (orderIterator.hasNext()) {
@@ -146,34 +141,54 @@ public class OrderBook implements OrderBookManager {
 
     public void deleteOrder(Side side, String orderId) {
 
-        Iterator orderIterator = null;
-        Collection ordersList = null;
-        if(side.equals(Side.buy)) {
-            for (LinkedList<Order> orderList : priceLevelBuyOrders.values()) {
-                for (Order order : orderList) {
-                    if (order.getOrderId().equalsIgnoreCase(orderId)) {
-                        //System.out.println(orderList.indexOf(order));
-                        orderList.remove();
-                        //orderList.remove(orderList.indexOf(order));
-                        System.out.println("Order " + order.getOrderId() + " successfully removed!");
-                    }
+        for (Map.Entry<String, LinkedList<Order>> iterator : priceLevelBuyOrders.entrySet()) {
+            LinkedList<Order> orderList = iterator.getValue();
+            //System.out.println("Key: " + key);
+            Iterator it = orderList.iterator();
+            while (it.hasNext()) {
+                Order order = (Order) it.next();
+                if (order.getOrderId().equalsIgnoreCase(orderId)) {
+                    orderList.remove(orderList.indexOf(order));
+                    System.out.println("Order " + order.getOrderId() + " successfully removed!");
+                    break;
                 }
             }
-        }
-            //orderIterator = priceLevelBuyOrders.values().iterator();
-        else if (side.equals(Side.sell)) {
-            for(LinkedList<Order> orderList: priceLevelSellOrders.values()) {
-                for(Order order: orderList) {
-                    if (order.getOrderId().equalsIgnoreCase(orderId)) {
-                        //System.out.println(orderList.indexOf(order));
-                        orderList.remove();
-                        //orderList.remove(orderList.indexOf(order));
-                        System.out.println("Order " + order.getOrderId() + " successfully removed!");
-                    }
-                }
-            }
+            //System.out.println("Values: ");
+//            for (Order order : orderList) {
+//                if (order.getOrderId().equalsIgnoreCase(orderId)) {
+//                    orderList.remove();
+//                    System.out.println("Order " + order.getOrderId() + " successfully removed!");
+//                }
+//
+//
+//            }
         }
 
+//        if(side.equals(Side.buy)) {
+//            for (LinkedList<Order> orderList : priceLevelBuyOrders.values()) {
+//                for (Order order : orderList) {
+//                    if (order.getOrderId().equalsIgnoreCase(orderId)) {
+//                        //System.out.println(orderList.indexOf(order));
+//                        orderList.remove();
+//                        //orderList.remove(orderList.indexOf(order));
+//                        System.out.println("Order " + order.getOrderId() + " successfully removed!");
+//                    }
+//                }
+//            }
+//        }
+//            //orderIterator = priceLevelBuyOrders.values().iterator();
+//        else if (side.equals(Side.sell)) {
+//            for(LinkedList<Order> orderList: priceLevelSellOrders.values()) {
+//                for(Order order: orderList) {
+//                    if (order.getOrderId().equalsIgnoreCase(orderId)) {
+//                        //System.out.println(orderList.indexOf(order));
+//                        orderList.remove();
+//                        //orderList.remove(orderList.indexOf(order));
+//                        System.out.println("Order " + order.getOrderId() + " successfully removed!");
+//                    }
+//                }
+//            }
+//        }
 
 
 //        while (orderIterator.hasNext()) {
@@ -213,26 +228,64 @@ public class OrderBook implements OrderBookManager {
 //
 //        }
 
-        if(order.getSide().equals(Side.buy)) {
-            for (LinkedList<Order> orderList : priceLevelBuyOrders.values()) {
-                for (Order x: orderList) {
-                    if (x.getOrderId().equalsIgnoreCase(order.getOrderId())){
-                        //System.out.println(orderList.indexOf(order));
+        if (order.getSide().equals(Side.buy)) {
+            for (Map.Entry<String, LinkedList<Order>> iterator : priceLevelBuyOrders.entrySet()) {
+                LinkedList<Order> orderList = iterator.getValue();
+//                orderList.remove(order);
+//                orderList.add(order);
+//                System.out.println("Order " + order.getOrderId() + " successfully removed!");
+//                break;
+                //System.out.println("Key: " + key);
+                Iterator it = orderList.iterator();
+                while (it.hasNext()) {
+                    Order oo = (Order) it.next();
+                    if (oo.getOrderId().equalsIgnoreCase(order.getOrderId())) {
                         orderList.remove(order);
-                        orderList.addLast(order);
+                        orderList.add(order);
+                        System.out.println("Order " + order.getOrderId() + " successfully removed!");
+                        break;
                     }
                 }
+//                }
             }
-        }
-        else {
-            for (LinkedList<Order> orderList : priceLevelSellOrders.values()) {
-                for (Order x: orderList) {
-                    if (x.getOrderId().equalsIgnoreCase(order.getOrderId())){
-                        //System.out.println(orderList.indexOf(order));
+            // Iterator it = priceLevelBuyOrders.values().iterator();
+
+//            for (LinkedList<Order> orderList : priceLevelBuyOrders.values()) {
+//                Iterator it = orderList.iterator();
+//                while(it.hasNext()){
+//                    if (it.next().equals(order.getOrderId())) {
+//                        orderList.remove(order);
+//                        orderList.addLast(order);
+//                    }
+//                }
+////                for (Order x: orderList) {
+////                    if (x.getOrderId().equalsIgnoreCase(order.getOrderId())){
+////                        //System.out.println(orderList.indexOf(order));
+////                        orderList.remove(order);
+////                        orderList.addLast(order);
+////                    }
+////                }
+//            }
+
+
+        } else {
+
+            for (Map.Entry<String, LinkedList<Order>> iterator : priceLevelSellOrders.entrySet()) {
+                LinkedList<Order> orderList = iterator.getValue();
+
+                Iterator it = orderList.iterator();
+                while (it.hasNext()) {
+                    //Order order = (Order) it.next();
+                    //if (order.getOrderId().equalsIgnoreCase(orderId)) {
+                    Order oo = (Order) it.next();
+                    if (oo.getOrderId().equalsIgnoreCase(order.getOrderId())) {
                         orderList.remove(order);
-                        orderList.addLast(order);
+                        orderList.add(order);
+                        System.out.println("Order " + order.getOrderId() + " successfully removed!");
+                        break;
                     }
                 }
+//                }
             }
         }
 

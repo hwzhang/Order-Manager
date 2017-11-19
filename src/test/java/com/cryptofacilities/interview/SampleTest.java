@@ -34,7 +34,7 @@ public class SampleTest {
 
         //orderBookManager.moveOrderToEnd( buy3 );
 
-        orderBookManager.deleteOrder(Side.buy, buy.getOrderId());
+        orderBookManager.deleteOrder(Side.buy, buy3.getOrderId());
         orderBookManager.printOrders();
         // check that best price is 200
         long expectedPrice = 200;
