@@ -40,7 +40,7 @@ public interface OrderBookManager {
     void deleteOrder( Side side, String orderId );
 
     /**
-     * Print all orders
+     * Print all buy and sell orders
      */
     void printOrders();
 
@@ -106,9 +106,18 @@ public interface OrderBookManager {
      */
     LinkedList<Order> getOrdersAtLevel(String instrument, Side side, long price );
 
-    LinkedList<Order> getBuyOrdersList( String instrument );
+    /**
+     * Get all orders for the instrument on given side
+     *
+     * Result should contain orders in the same order as they arrive,
+     * but also see {@link #modifyOrder( String , long )} for exception
+     *
+     * @param instrument identifier of an instrument
+     * @param side either buy or sell
+     * @return all orders, or empty list if there're no orders for the instrument on this side with this price
+     */
+    LinkedList<Order> getOrdersList( String instrument, Side side );
 
-    LinkedList<Order> getSellOrdersList(String instrument );
 
 
 }
