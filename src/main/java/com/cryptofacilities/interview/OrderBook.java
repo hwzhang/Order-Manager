@@ -26,7 +26,7 @@ public class OrderBook implements OrderBookManager {
     private volatile LinkedList<Order> buyOrderListLarge = new LinkedList<Order>();
     private volatile LinkedList<Order> sellOrderListLarge = new LinkedList<Order>();
 
-    // HashMaps to store buy/sell orders for an instrument
+    // HashMaps to store buy/sell orders for an instrument, use price range (e.g. 0-100) as key
     private HashMap<String, LinkedList<Order>> priceLevelBuyOrders = new HashMap<String, LinkedList<Order>>();
     private HashMap<String, LinkedList<Order>> priceLevelSellOrders = new HashMap<String, LinkedList<Order>>();
 
@@ -46,6 +46,8 @@ public class OrderBook implements OrderBookManager {
 
     public OrderBook(String instrument) {
         this.instrument = instrument;
+
+        //Do not allow multiple books for the same instrument
         if (instrumentsList.contains(instrument)) {
             System.out.println("'" + instrument + "' already exists.");
             return;
@@ -65,8 +67,6 @@ public class OrderBook implements OrderBookManager {
         priceLevelSellOrders.put("101-1000", sellOrderListMid);
         priceLevelSellOrders.put("1001-5000", sellOrderListBig);
         priceLevelSellOrders.put("5000+", sellOrderListLarge);
-        //Collections.sort();
-
     }
 
     public void addOrder(Order order) {
